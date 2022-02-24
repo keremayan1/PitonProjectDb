@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess.EntityFramework.Context;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,9 +19,12 @@ namespace DataAccess.Concrete.EntityFramework.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server = KEROSOFT\SQLEXPRESS; Database = PitonProjectDb; Trusted_Connection = true");
+            optionsBuilder.UseSqlServer(Configuration.GetConnectionString("SqlConnectionStrings"));
         }
         public DbSet<Plan> Plans { get; set; }
         public DbSet<PlanStatus> PlanStatus { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
