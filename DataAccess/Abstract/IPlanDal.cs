@@ -12,6 +12,6 @@ namespace DataAccess.Abstract
 {
     public interface IPlanDal:IEntityRepository<Plan>
     {
-        Task<List<PlanDto>> GetPlanDto(Expression<Func<PlanDto, bool>> filter=null);
+        Task<List<PlanDto>> GetPlanDto(int userId);
     }
 }

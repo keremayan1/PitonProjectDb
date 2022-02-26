@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MVCUI.Models;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace MVCUI.Controllers
 {
@@ -13,8 +15,14 @@ namespace MVCUI.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
+
+            var name = User.Claims.Where(c => c.Type == ClaimTypes.Name)
+                   .Select(c => c.Value).SingleOrDefault();
+
+
             return View();
         }
 

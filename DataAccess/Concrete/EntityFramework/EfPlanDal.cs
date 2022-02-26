@@ -21,10 +21,11 @@ namespace DataAccess.Concrete.EntityFramework
         {
         }
 
-        public async Task<List<PlanDto>> GetPlanDto(Expression<Func<PlanDto, bool>> filter = null)
+        public async Task<List<PlanDto>> GetPlanDto(int userId)
         {
            var list = await(from p in _context.Plans
                             join p2 in _context.PlanStatus on p.PlanStatusId equals p2.Id
+                            where p.UserId==userId
                             select new PlanDto
                             {
                                 Id = p.Id,
@@ -33,7 +34,6 @@ namespace DataAccess.Concrete.EntityFramework
                                 PlanStatusName=p2.Name,
                                 Comment=p.Comment,
                                 PlanStatusId=p.PlanStatusId
-                                
                             }).ToListAsync();
             return list;
         }

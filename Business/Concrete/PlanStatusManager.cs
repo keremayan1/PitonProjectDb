@@ -18,9 +18,9 @@ namespace Business.Concrete
             _planStatusDal = planStatusDal;
         }
 
-        public async Task<IDataResult<List<PlanStatus>>> GetAll()
+        public async Task<Response<List<PlanStatus>>> GetAll()
         {
-            return new SuccessDataResult<List<PlanStatus>>(await _planStatusDal.GetAllAsync());
+            return Response<List<PlanStatus>>.Success(await _planStatusDal.GetAllAsync(),200);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Core.Utilities.Results;
+﻿
+using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.Concrete.Dto;
 using System;
@@ -12,9 +13,10 @@ namespace Business.Abstract
     public interface IPlanService
     {
         Task<IDataResult<List<PlanDto>>> GetPlanDtoByUserId(int userId);
-        Task<IDataResult<Plan>> GetPlan(int planStatus);
-        Task<IResult> Add(Plan plan);
-        Task<IResult> Remove(int  planId);
-        Task<IResult> Update(Plan plan);
+        Task<Response<List<PlanDto>>> GetPlanDtoByUserId2(int userId);
+        Task<IDataResult<Plan>> GetPlanId(int planId);
+        Task<Response<Plan>> Add(Plan plan);
+        Task<Response<Plan>> Remove(int  planId);
+        Task<Response<Plan>> Update(Plan plan);
     }
 }

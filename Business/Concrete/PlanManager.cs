@@ -20,35 +20,41 @@ namespace Business.Concrete
         {
             _planDal = planDal;
         }
-        public async Task<IResult> Add(Plan plan)
+        public async Task<Response<Plan>> Add(Plan plan)
         {
             await _planDal.AddAsync(plan);
-            return new SuccessResult();
+            return Response<Plan>.Success(200);
         }
-
-        public async Task<IDataResult<Plan>> GetPlan(int planStatus)
-        {
-            var result = await _planDal.GetAsync(x => x.UserId == planStatus);
-            return new SuccessDataResult<Plan>(result);
-        }
-
         public async Task<IDataResult<List<PlanDto>>> GetPlanDtoByUserId(int userId)
         {
-            var result = await _planDal.GetPlanDto(x => x.UserId == userId);
+            var result = await _planDal.GetPlanDto(userId);
             return new SuccessDataResult<List<PlanDto>>(result);
         }
 
-        public async Task<IResult> Remove(int planId)
+        public async Task<Response<List<PlanDto>>> GetPlanDtoByUserId2(int userId)
+        {
+            var result = await _planDal.GetPlanDto(userId);
+            return Response<List<PlanDto>>.Success(result,200);
+        }
+
+        public async Task<IDataResult<Plan>> GetPlanId(int planId)
+        {
+            var result = await _planDal.GetAsync(x => x.Id == planId);
+            return new SuccessDataResult<Plan>(result);
+        }
+
+        public async Task<Response<Plan>> Remove(int planId)
         {
             var result = await _planDal.GetAsync(x => x.Id == planId);
             await _planDal.DeleteAsync(result);
-            return new SuccessResult();
+            return Response<Plan>.Success(200);
+
         }
 
-        public async Task<IResult> Update(Plan plan)
+        public async Task<Response<Plan>> Update(Plan plan)
         {
             await _planDal.UpdateAsync(plan);
-            return new SuccessResult();
+            return Response<Plan>.Success(200);
         }
     }
 }

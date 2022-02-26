@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Update";
+}
+@model UpdatePlanInput
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Plan Güncelleme </h5>
+
+                <form asp-controller="Plans" asp-action="Update" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <input type="hidden" asp-for="Id"/>
+                    <input type="hidden" asp-for="UserId"/>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label" asp-for="PlanStatusId"></label>
+                        <select asp-for="PlanStatusId" class="form-control" asp-items="@ViewBag.plans">
+                           
+                        </select>
+
+                        <span class="text-danger" asp-validation-for="PlanStatusId"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Day" class="form-label"></label>
+                        <input asp-for="Day" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Day"></span>
+                    </div>
+                  @*  <div class="mb-3">
+                        <label asp-for="PlanStatusName" class="form-label"></label>
+                        <input asp-for="PlanStatusName" class="form-control" />
+                        <span class="text-danger" asp-validation-for="PlanStatusName"></span>
+                    </div>*@
+
+                    <div class="mb-3">
+                        <label asp-for="Comment" class="form-label"></label>
+                        <textarea asp-for="Comment" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="Comment"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Plan Güncelle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
