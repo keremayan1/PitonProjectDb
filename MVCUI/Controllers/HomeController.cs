@@ -15,14 +15,11 @@ namespace MVCUI.Controllers
             _logger = logger;
         }
 
-        [Authorize]
+       
         public IActionResult Index()
         {
 
-            var name = User.Claims.Where(c => c.Type == ClaimTypes.Name)
-                   .Select(c => c.Value).SingleOrDefault();
-
-
+           
             return View();
         }
 

@@ -1,8 +1,8 @@
 ﻿
 @{
-    ViewData["Title"] = "SignIn";
+    ViewData["Title"] = "SignUp";
 }
-@model SignInInput
+@model SignUpInput
 <div class="row">
 
     <div class="col-md-4 offset-md-4">
@@ -12,8 +12,17 @@
                 
                 <h5 class="card-title">Üye Giriş</h5>
                 <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-                <form asp-controller="Auth" asp-action="SignIn" method="post">
-                    
+                <form asp-controller="Auth" asp-action="SignUp" method="post">
+                     <div class="mb-3">
+                        <label asp-for="FirstName"  class="form-label"></label>
+                        <input type="text"  asp-for="FirstName" class="form-control" />
+                        <span class="text-danger" asp-validation-for="FirstName"></span>
+                    </div>
+                      <div class="mb-3">
+                        <label asp-for="LastName"  class="form-label"></label>
+                        <input type="text"  asp-for="LastName" class="form-control" />
+                        <span class="text-danger" asp-validation-for="LastName"></span>
+                    </div>
                     <div class="mb-3">
                         <label asp-for="Email" for="exampleInputEmail1" class="form-label"></label>
                         <input type="email"  asp-for="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

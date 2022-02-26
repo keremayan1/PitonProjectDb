@@ -1,4 +1,5 @@
-﻿using Core.Entities.Concrete;
+﻿using Core.Entities.EntityFramework.Concrete;
+using Core.Utilities.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,10 @@ namespace Business.Abstract
         Task Add(User entity);
         Task Update(User entity);
         Task Delete(User entity);
-        List<OperationClaim> GetClaims(User user);
-        User GetByMail(string email,string password);
-      
+       
+        User GetByMailAndPassword(string email, string password);
+        
+
 
 
 

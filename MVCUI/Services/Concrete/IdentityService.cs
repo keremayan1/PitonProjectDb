@@ -1,5 +1,7 @@
-﻿using IdentityModel.Client;
-using MVCUI.Models;
+﻿using Core.Utilities.Results;
+
+
+using MVCUI.Models.Auth;
 using MVCUI.Services.Abstract;
 
 namespace MVCUI.Services.Concrete
@@ -7,12 +9,30 @@ namespace MVCUI.Services.Concrete
     public class IdentityService : IIdentityService
     {
         private readonly HttpClient _httpClient;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+      
 
-        public IdentityService(HttpClient httpClient, IHttpContextAccessor httpContextAccessor)
+        public IdentityService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _httpContextAccessor = httpContextAccessor;
+           
+        }
+
+        public async Task<SignInInput> GetById(int userId)
+        {
+            var result = await _httpClient.GetAsync($"http://localhost:5068/api/Auth/getbyid/{userId}");
+            if (result==null)
+            {
+                return null;
+            }
+            var response =await result.Content.ReadFromJsonAsync<Response<SignInInput>>();
+            return response.Data;
+
+        }
+
+        public async Task<bool> SignUp(SignUpInput signUpInput)
+        {
+            var result = await _httpClient.PostAsJsonAsync<SignUpInput>("http://localhost:5068/api/Auth/register", signUpInput);
+            return result.IsSuccessStatusCode;
         }
 
         public async Task<bool> SignIn(SignInInput signInInput)

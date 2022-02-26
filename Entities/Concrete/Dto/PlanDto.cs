@@ -14,7 +14,7 @@ namespace Entities.Concrete.Dto
         public int PlanStatusId { get; set; }
         public string PlanStatusName { get; set; }
 
-        public int Day { get; set; }
+        public int Time { get; set; }
         public string Comment { get; set; }
     }
 }

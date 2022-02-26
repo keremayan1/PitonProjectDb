@@ -1,46 +1,45 @@
-﻿using AutoMapper;
-using Business.Abstract;
+﻿using Business.Abstract;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Concrete.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
     public class PlanManager : IPlanService
     {
         IPlanDal _planDal;
+     
 
-        public PlanManager(IPlanDal planDal)
+        public PlanManager(IPlanDal planDal) 
         {
             _planDal = planDal;
+       
         }
+
+       
         public async Task<Response<Plan>> Add(Plan plan)
         {
             await _planDal.AddAsync(plan);
             return Response<Plan>.Success(200);
         }
-        public async Task<IDataResult<List<PlanDto>>> GetPlanDtoByUserId(int userId)
+        public async Task<Response<List<PlanDto>>> GetPlanDtoByUserId(int userId)
         {
             var result = await _planDal.GetPlanDto(userId);
-            return new SuccessDataResult<List<PlanDto>>(result);
+            return  Response<List<PlanDto>>.Success(result,200);
         }
 
-        public async Task<Response<List<PlanDto>>> GetPlanDtoByUserId2(int userId)
+        public async Task<Response<List<PlanDto>>> GetPlanByUserId(int userId)
         {
+          
             var result = await _planDal.GetPlanDto(userId);
             return Response<List<PlanDto>>.Success(result,200);
         }
 
-        public async Task<IDataResult<Plan>> GetPlanId(int planId)
+        public async Task<Response<Plan>> GetPlanId(int planId)
         {
             var result = await _planDal.GetAsync(x => x.Id == planId);
-            return new SuccessDataResult<Plan>(result);
+            return  Response<Plan>.Success(result,200);
         }
 
         public async Task<Response<Plan>> Remove(int planId)

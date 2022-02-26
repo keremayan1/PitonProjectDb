@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Entities.Concrete
+namespace Core.Entities.EntityFramework.Concrete
 {
-  public  class User:IEntity
+    public class User : IEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

@@ -29,7 +29,7 @@ namespace MVCUI.Services.Concrete
         public async Task<List<PlanView>> GetAllByUserId(int userId)
         {
            
-            var result = await _httpClient.GetAsync($"http://localhost:5068/api/Plan/getallbyuserid/{userId}");
+            var result = await _httpClient.GetAsync($"http://localhost:5068/api/Plan/getplanbyuserid/{userId}");
             if (!result.IsSuccessStatusCode)
             {
                 return null;

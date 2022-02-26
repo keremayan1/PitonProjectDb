@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
-using Core.Entities.Concrete;
+using Core.Entities.EntityFramework.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         IUserDal _userDal;
-
         public UserManager(IUserDal userDal)
         {
             _userDal = userDal;
@@ -21,36 +21,32 @@ namespace Business.Concrete
         public async Task Add(User entity)
         {
             await _userDal.AddAsync(entity);
-            return;
+        
         }
         public async Task Delete(User entity)
         {
             await _userDal.DeleteAsync(entity);
-        
+
         }
         public async Task<List<User>> GetAll()
         {
             return await _userDal.GetAllAsync();
         }
 
-        public User GetByMail(string email,string password)
+        public User GetByMailAndPassword(string email, string password)
         {
-            var user =_userDal.Get(u => u.Email == email && u.Password==password);
-            
+            var user = _userDal.Get(u => u.Email == email && u.Password == password);
+
             return user;
-               
+
         }
-      
-        public List<OperationClaim> GetClaims(User user)
-        {
-            return _userDal.GetClaims(user);
-        }
+
+       
 
         public async Task Update(User entity)
         {
             await _userDal.UpdateAsync(entity);
-           
-        }
 
+        }
     }
 }

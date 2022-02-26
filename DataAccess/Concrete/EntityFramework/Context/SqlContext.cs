@@ -1,5 +1,5 @@
 ﻿using Core.DataAccess.EntityFramework.Context;
-using Core.Entities.Concrete;
+using Core.Entities.EntityFramework.Concrete;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,8 +23,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         }
         public DbSet<Plan> Plans { get; set; }
         public DbSet<PlanStatus> PlanStatus { get; set; }
-        public DbSet<OperationClaim> OperationClaims { get; set; }
-        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+       
         public DbSet<User> Users { get; set; }
     }
 }

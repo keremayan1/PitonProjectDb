@@ -19,7 +19,7 @@ namespace MVCUI.Controllers
         
         public async Task<IActionResult> Index(int userId)
         {
-            return View(await _planService.GetAllByUserId(1));
+            return View(await _planService.GetAllByUserId(userId));
         }
         public async Task<IActionResult> AddPlan()
         {
@@ -37,7 +37,7 @@ namespace MVCUI.Controllers
                 return View();
             }
             await _planService.AddPlan(addPlanInput);
-            return RedirectToAction(nameof(HomeController));
+            return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> Update(int id)
         {

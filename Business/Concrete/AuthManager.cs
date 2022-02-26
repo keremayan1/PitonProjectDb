@@ -1,7 +1,7 @@
 ﻿using Business.Abstract;
-using Core.Entities.Concrete;
-using Core.Utilities.Security.Hashing;
-using Core.Utilities.Security.JWT;
+using Core.Entities.EntityFramework.Concrete;
+using Core.Utilities.Results;
+
 using Entities.Concrete.Dto;
 using System;
 using System.Collections.Generic;
@@ -16,22 +16,22 @@ namespace Business.Concrete
         IUserService _userService;
 
 
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper, IUserOperationClaimService userOperationClaimService)
+        public AuthManager(IUserService userService)
         {
             _userService = userService;
         }
-       
-        public User Login(UserForLoginDto userForLoginDto)
+
+        public  Response<User> Login(UserForLoginDto userForLoginDto)
         {
-            var userToCheck = _userService.GetByMail(userForLoginDto.Email,userForLoginDto.Password);
+            var userToCheck = _userService.GetByMailAndPassword(userForLoginDto.Email,userForLoginDto.Password);
             if (userToCheck == null)
             {
                 throw new Exception("Hatalı E-Mail ve Şifre");
             }
-            return userToCheck;
+            return Response<User>.Success(userToCheck,200);
         }
 
-        public async Task<User> Register(UserForRegisterDto userForRegisterDto)
+        public async Task<Response<User>> Register(UserForRegisterDto userForRegisterDto)
         {
             var user = new User
             {
@@ -43,14 +43,14 @@ namespace Business.Concrete
             };
             await _userService.Add(user);
 
-            return user;
+            return Response<User>.Success(200);
         }
 
        
 
         public bool UserExits(string email,string password)
         {
-            if (_userService.GetByMail(email,password) != null)
+            if (_userService.GetByMailAndPassword(email,password) != null)
             {
           
                 throw new Exception("Boyle bir kullanici sistemde vardir");

@@ -30,7 +30,7 @@ namespace DataAccess.Concrete.EntityFramework
                             {
                                 Id = p.Id,
                                 UserId= p.UserId,
-                                Day=p.Day,
+                                Time=p.Time,
                                 PlanStatusName=p2.Name,
                                 Comment=p.Comment,
                                 PlanStatusId=p.PlanStatusId

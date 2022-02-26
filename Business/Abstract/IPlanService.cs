@@ -12,9 +12,9 @@ namespace Business.Abstract
 {
     public interface IPlanService
     {
-        Task<IDataResult<List<PlanDto>>> GetPlanDtoByUserId(int userId);
-        Task<Response<List<PlanDto>>> GetPlanDtoByUserId2(int userId);
-        Task<IDataResult<Plan>> GetPlanId(int planId);
+       
+        Task<Response<List<PlanDto>>> GetPlanByUserId(int userId);
+        Task<Response<Plan>> GetPlanId(int planId);
         Task<Response<Plan>> Add(Plan plan);
         Task<Response<Plan>> Remove(int  planId);
         Task<Response<Plan>> Update(Plan plan);

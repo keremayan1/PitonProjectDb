@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MVCUI.Models
+namespace MVCUI.Models.Auth
 {
     public class SignInInput
     {
@@ -14,6 +14,7 @@ namespace MVCUI.Models
         [Display(Name = "Beni Hatırla")]
         public bool IsRemember { get; set; }
 
-        public bool IsSignIn { get; set; }
+       
+
     }
 }

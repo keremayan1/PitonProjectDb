@@ -15,35 +15,35 @@ namespace WebAPI.Controllers
         {
             _planService = planService;
         }
-        [HttpGet("getallbyuserid/{userId}")]
-        public async Task<IActionResult> GetAllByUserId(int userId)
+        [HttpGet("getplanbyuserid/{userId}")]
+        public async Task<IActionResult> GetPlanByUserId(int userId)
         {
-            var result = await _planService.GetPlanDtoByUserId2(userId);
+            var result = await _planService.GetPlanByUserId(userId);
             return result.IsSuccessful? Ok(result) : BadRequest(result);
         }
         [HttpGet("getbyplanid/{planId}")]
         public async Task<IActionResult> GetByPlanId(int planId)
         {
             var result = await _planService.GetPlanId(planId);
-            return result.Success ? Ok(result) : BadRequest(result);
+            return result.IsSuccessful ? Ok(result) : BadRequest(result);
         }
         [HttpPost("add")]
         public async Task<IActionResult> Add(Plan plan)
         {
-         await _planService.Add(plan);
-            return Ok();
+       var result =  await _planService.Add(plan);
+            return result.IsSuccessful ? Ok(result) : BadRequest(result);
         }
         [HttpDelete("{planId}")]
         public async Task<IActionResult> Delete(int planId)
         {
-           await _planService.Remove(planId);
-            return Ok();
+         var result =  await _planService.Remove(planId);
+            return result.IsSuccessful ? Ok(result) : BadRequest(result);
         }
         [HttpPost("update")]
         public async Task<IActionResult> Update(Plan plan)
         {
-             await _planService.Update(plan);
-            return Ok();
+          var result =   await _planService.Update(plan);
+            return result.IsSuccessful ? Ok(result) : BadRequest(result);
         }
     }
 }
