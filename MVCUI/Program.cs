@@ -1,17 +1,15 @@
+using Core.Extensions;
 using Core.Utilities.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using MVCUI.Extensions;
 using MVCUI.Services.Abstract;
 using MVCUI.Services.Concrete;
 using MVCUI.Validators.FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddHttpClient<IPlanService, PlanService>();
-builder.Services.AddHttpClient<IPlanStatusService, PlanStatusService>();
-builder.Services.AddScoped<IServicesIdentityService, ServicesIdentityService>();
-builder.Services.AddHttpClient<IIdentityService, IdentityService>();
+builder.Services.AddDependencyResolvers(builder.Configuration, new ServicesExtension());
 
 
 // Add services to the container.

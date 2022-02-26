@@ -7,9 +7,9 @@ namespace MVCUI.Models.Plans
         public int Id { get; set; }
         public int UserId { get; set; }
         public int PlanStatusId { get; set; }
-        [Display(Name = "Durum Ad")]
+        [Display(Name = "Zaman")]
      
-        public int Day { get; set; }
+        public int Time { get; set; }
         [Display(Name = "Yorum ")]
         public string Comment { get; set; }
     }

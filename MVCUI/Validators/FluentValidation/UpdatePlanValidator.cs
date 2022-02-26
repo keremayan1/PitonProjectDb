@@ -7,8 +7,9 @@ namespace MVCUI.Validators.FluentValidation
     {
         public UpdatePlanValidator()
         {
-            RuleFor(x => x.Day).NotEmpty().WithMessage("Plan Süre Boş Olamaz!");
+            RuleFor(x => x.Time).NotEmpty().WithMessage("Plan Süre Boş Olamaz!");
             RuleFor(x => x.Comment).NotEmpty().WithMessage("Plan Mesajı Boş Olamaz");
+            RuleFor(x => x.Comment).NotEmpty().WithMessage("Plan Boş Olamaz!");
         }
     }
 }

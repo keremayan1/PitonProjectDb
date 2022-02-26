@@ -52,7 +52,7 @@ namespace MVCUI.Controllers
             {
                 Id = plans.Id,
                 Comment = plans.Comment,
-                Day = plans.Day,
+                Time = plans.Time,
                 //PlanStatusName = plans.PlanStatusName,
                 UserId = plans.UserId,
                 PlanStatusId = plans.PlanStatusId,
